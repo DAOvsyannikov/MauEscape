@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public GameObject ground, gameName, mau, lives, envirenments;
+    public GameObject gameName, mau, lives, detectClicks;
     private Image backImage;
     // Start is called before the first frame update
     void Start()
@@ -24,12 +24,10 @@ public class Buttons : MonoBehaviour
         switch(gameObject.name){
             case "Play" :
                 gameObject.SetActive(false);
-                //backImage.color = new Color(backImage.color.r, backImage.color.g, backImage.color.b, 0.15f);
                 gameName.SetActive(false);
-                ground.SetActive(true);
-                envirenments.SetActive(true);
                 mau.SetActive(true);
                 lives.SetActive(true);
+                detectClicks.SetActive(true);
                 break;
             case "Repeat" :
                 SceneManager.LoadScene("Main");

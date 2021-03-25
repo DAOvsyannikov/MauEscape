@@ -29,6 +29,8 @@ public class MauController : MonoBehaviour
     void Update(){
         if (livesCount == 0 || transform.position.y < -4f)
             playerLose();
+        if (transform.rotation.z > 32f || transform.rotation.z < -32f)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
     } 
 
     // Update is called once per frame
@@ -58,8 +60,7 @@ public class MauController : MonoBehaviour
         changeSprite("Envirenments_17", getLive);
     }
     void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Spike") {
-            print("SPIKE!");
+        if(other.gameObject.tag == "Spike" || other.gameObject.tag == "Enemy") {
             loseLive();
         }
         
@@ -68,7 +69,7 @@ public class MauController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if((other.gameObject.tag == "Ground" || other.gameObject.tag == "Platform") && livesCount > 0) {
+        if((other.gameObject.tag == "Ground" || other.gameObject.tag == "Platform"|| other.gameObject.tag == "Enemy") && livesCount > 0) {
             jumpCount = 0;
         }
     }
@@ -94,6 +95,7 @@ public class MauController : MonoBehaviour
         lose = true;
         speed = 0f;
         rb.velocity = Vector2.zero;
+        transform.rotation = Quaternion.identity;
         GetComponent<SpriteRenderer>().sprite = die;
         repeate.SetActive(true);
     }

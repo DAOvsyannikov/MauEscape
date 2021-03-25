@@ -7,6 +7,7 @@ public class PlatformMove : MonoBehaviour
     private GameObject mau;
     private bool move;
     private float playerSpeed, checkPos;
+    public GameObject checkpoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class PlatformMove : MonoBehaviour
             mau.GetComponent<MauController>().speed = 0f;
             mau.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             checkPos = 16.8f;
+            checkpoint.SetActive(true);
         }
     }
 }
